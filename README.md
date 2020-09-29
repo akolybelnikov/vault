@@ -9,7 +9,22 @@ cd vault/cmd/vaultd
 go run main.go
 ```
 
-Hash a password:
+### Hash a password:
+
+#### With vaultcli;
+
+```bash
+cd ./cmd/vaultcli && go install
+```
+After that in the terminal:
+
+```bash
+vaultcli hash password
+
+vaultcli validate password hash
+```
+
+#### With curl:
 
 ```bash
 curl -XPOST -d'{"password":"MySecretPassword123"}' localhost:8080/hash
