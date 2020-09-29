@@ -11,7 +11,7 @@ go run main.go
 
 ### Hash a password:
 
-#### With vaultcli;
+#### With vaultcli:
 
 ```bash
 cd ./cmd/vaultcli && go install
