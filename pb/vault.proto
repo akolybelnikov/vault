@@ -1,9 +1,10 @@
 syntax = "proto3";
-option go_package = ".;vault";
+
+option go_package = "github.com/akolybelnikov/vault";
 package pb;
 service Vault {
   rpc Hash(HashRequest) returns (HashResponse) {}
-  rpc Validate(ValidateRequest) returns (ValisateResponse) {}
+  rpc Validate(ValidateRequest) returns (ValidateResponse) {}
 }
 
 message HashRequest { string password = 1; }
@@ -18,4 +19,4 @@ message ValidateRequest {
   string hash = 2;
 }
 
-message ValisateResponse { bool valid = 1; }
+message ValidateResponse { bool valid = 1; }

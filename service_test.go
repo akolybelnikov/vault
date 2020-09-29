@@ -3,7 +3,7 @@ package vault
 import (
 	"testing"
 
-	"golang.org/x/net/context"
+	"context"
 )
 
 func TestHasherService(t *testing.T) {

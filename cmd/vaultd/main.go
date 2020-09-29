@@ -9,14 +9,15 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
+	//"time"
 
-	ratelimitkit "github.com/go-kit/kit/ratelimit"
+	//ratelimitkit "github.com/go-kit/kit/ratelimit"
 
-	"github.com/juju/ratelimit"
-	"/User/akolybelnikov/Learning/vault"
-	"github.com/matryer/goblueprints/chapter10/vault/pb"
-	"golang.org/x/net/context"
+	//"context"
+
+	"github.com/akolybelnikov/vault"
+	pb "github.com/akolybelnikov/vault/pb"
+	//"github.com/juju/ratelimit"
 	"google.golang.org/grpc"
 )
 
@@ -26,7 +27,7 @@ func main() {
 		gRPCAddr = flag.String("grpc", ":8081", "gRPC listen address")
 	)
 	flag.Parse()
-	ctx := context.Background()
+	//ctx := context.Background()
 	srv := vault.NewService()
 	errChan := make(chan error)
 	go func() {
@@ -35,15 +36,15 @@ func main() {
 		errChan <- fmt.Errorf("%s", <-c)
 	}()
 
-	rlbucket := ratelimit.NewBucket(1*time.Second, 5)
+	//rlbucket := ratelimit.NewBucket(1*time.Second, 5)
 	hashEndpoint := vault.MakeHashEndpoint(srv)
-	{
-		hashEndpoint = ratelimitkit.NewTokenBucketThrottler(rlbucket, time.Sleep)(hashEndpoint)
-	}
+	// {
+	// 	hashEndpoint = ratelimitkit.NewTokenBucketThrottler(rlbucket, time.Sleep)(hashEndpoint)
+	// }
 	validateEndpoint := vault.MakeValidateEndpoint(srv)
-	{
-		validateEndpoint = ratelimitkit.NewTokenBucketThrottler(rlbucket, time.Sleep)(validateEndpoint)
-	}
+	// {
+	// 	validateEndpoint = ratelimitkit.NewTokenBucketThrottler(rlbucket, time.Sleep)(validateEndpoint)
+	// }
 	endpoints := vault.Endpoints{
 		HashEndpoint:     hashEndpoint,
 		ValidateEndpoint: validateEndpoint,
@@ -52,7 +53,7 @@ func main() {
 	// HTTP transport
 	go func() {
 		log.Println("http:", *httpAddr)
-		handler := vault.NewHTTPServer(ctx, endpoints)
+		handler := vault.NewHTTPServer(endpoints)
 		errChan <- http.ListenAndServe(*httpAddr, handler)
 	}()
 
@@ -64,7 +65,7 @@ func main() {
 			return
 		}
 		log.Println("grpc:", *gRPCAddr)
-		handler := vault.NewGRPCServer(ctx, endpoints)
+		handler := vault.NewGRPCServer(endpoints)
 		gRPCServer := grpc.NewServer()
 		pb.RegisterVaultServer(gRPCServer, handler)
 		errChan <- gRPCServer.Serve(listener)

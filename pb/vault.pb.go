@@ -186,7 +186,7 @@ func (x *ValidateRequest) GetHash() string {
 	return ""
 }
 
-type ValisateResponse struct {
+type ValidateResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -194,8 +194,8 @@ type ValisateResponse struct {
 	Valid bool `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
 }
 
-func (x *ValisateResponse) Reset() {
-	*x = ValisateResponse{}
+func (x *ValidateResponse) Reset() {
+	*x = ValidateResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vault_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -203,13 +203,13 @@ func (x *ValisateResponse) Reset() {
 	}
 }
 
-func (x *ValisateResponse) String() string {
+func (x *ValidateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ValisateResponse) ProtoMessage() {}
+func (*ValidateResponse) ProtoMessage() {}
 
-func (x *ValisateResponse) ProtoReflect() protoreflect.Message {
+func (x *ValidateResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_vault_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -221,12 +221,12 @@ func (x *ValisateResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ValisateResponse.ProtoReflect.Descriptor instead.
-func (*ValisateResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidateResponse.ProtoReflect.Descriptor instead.
+func (*ValidateResponse) Descriptor() ([]byte, []int) {
 	return file_vault_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ValisateResponse) GetValid() bool {
+func (x *ValidateResponse) GetValid() bool {
 	if x != nil {
 		return x.Valid
 	}
@@ -247,7 +247,7 @@ var file_vault_proto_rawDesc = []byte{
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72,
 	0x64, 0x12, 0x12, 0x0a, 0x04, 0x68, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x68, 0x61, 0x73, 0x68, 0x22, 0x28, 0x0a, 0x10, 0x56, 0x61, 0x6c, 0x69, 0x73, 0x61, 0x74,
+	0x04, 0x68, 0x61, 0x73, 0x68, 0x22, 0x28, 0x0a, 0x10, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
 	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c,
 	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x32,
 	0x6d, 0x0a, 0x05, 0x56, 0x61, 0x75, 0x6c, 0x74, 0x12, 0x2b, 0x0a, 0x04, 0x48, 0x61, 0x73, 0x68,
@@ -256,9 +256,10 @@ var file_vault_proto_rawDesc = []byte{
 	0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x37, 0x0a, 0x08, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
 	0x65, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x56, 0x61, 0x6c, 0x69,
-	0x73, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x09,
-	0x5a, 0x07, 0x2e, 0x3b, 0x76, 0x61, 0x75, 0x6c, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x20,
+	0x5a, 0x1e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x6b, 0x6f,
+	0x6c, 0x79, 0x62, 0x65, 0x6c, 0x6e, 0x69, 0x6b, 0x6f, 0x76, 0x2f, 0x76, 0x61, 0x75, 0x6c, 0x74,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -278,13 +279,13 @@ var file_vault_proto_goTypes = []interface{}{
 	(*HashRequest)(nil),      // 0: pb.HashRequest
 	(*HashResponse)(nil),     // 1: pb.HashResponse
 	(*ValidateRequest)(nil),  // 2: pb.ValidateRequest
-	(*ValisateResponse)(nil), // 3: pb.ValisateResponse
+	(*ValidateResponse)(nil), // 3: pb.ValidateResponse
 }
 var file_vault_proto_depIdxs = []int32{
 	0, // 0: pb.Vault.Hash:input_type -> pb.HashRequest
 	2, // 1: pb.Vault.Validate:input_type -> pb.ValidateRequest
 	1, // 2: pb.Vault.Hash:output_type -> pb.HashResponse
-	3, // 3: pb.Vault.Validate:output_type -> pb.ValisateResponse
+	3, // 3: pb.Vault.Validate:output_type -> pb.ValidateResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -335,7 +336,7 @@ func file_vault_proto_init() {
 			}
 		}
 		file_vault_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ValisateResponse); i {
+			switch v := v.(*ValidateResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -380,7 +381,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type VaultClient interface {
 	Hash(ctx context.Context, in *HashRequest, opts ...grpc.CallOption) (*HashResponse, error)
-	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValisateResponse, error)
+	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 }
 
 type vaultClient struct {
@@ -400,8 +401,8 @@ func (c *vaultClient) Hash(ctx context.Context, in *HashRequest, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *vaultClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValisateResponse, error) {
-	out := new(ValisateResponse)
+func (c *vaultClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
+	out := new(ValidateResponse)
 	err := c.cc.Invoke(ctx, "/pb.Vault/Validate", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -412,7 +413,7 @@ func (c *vaultClient) Validate(ctx context.Context, in *ValidateRequest, opts ..
 // VaultServer is the server API for Vault service.
 type VaultServer interface {
 	Hash(context.Context, *HashRequest) (*HashResponse, error)
-	Validate(context.Context, *ValidateRequest) (*ValisateResponse, error)
+	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
 }
 
 // UnimplementedVaultServer can be embedded to have forward compatible implementations.
@@ -422,7 +423,7 @@ type UnimplementedVaultServer struct {
 func (*UnimplementedVaultServer) Hash(context.Context, *HashRequest) (*HashResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Hash not implemented")
 }
-func (*UnimplementedVaultServer) Validate(context.Context, *ValidateRequest) (*ValisateResponse, error) {
+func (*UnimplementedVaultServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
 }
 

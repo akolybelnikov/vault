@@ -5,9 +5,10 @@ import (
 	"errors"
 	"net/http"
 
+	"context"
+
 	"github.com/go-kit/kit/endpoint"
 	"golang.org/x/crypto/bcrypt"
-	"golang.org/x/net/context"
 )
 
 // Service provides password hashing capabilities

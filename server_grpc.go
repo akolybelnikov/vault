@@ -1,10 +1,10 @@
 package vault
 
 import (
-	"golang.org/x/net/context"
+	"context"
 
 	grpctransport "github.com/go-kit/kit/transport/grpc"
-	"./pb"
+	pb "github.com/akolybelnikov/vault/pb"
 )
 
 type grpcServer struct {
@@ -13,20 +13,18 @@ type grpcServer struct {
 }
 
 // NewGRPCServer gets a new pb.VaultServer
-func NewGRPCServer(ctx context.Context, endpoints Endpoints) pb.VaultServer {
+func NewGRPCServer(endpoints Endpoints) pb.VaultServer {
 	return &grpcServer{
 		hash: grpctransport.NewServer(
-			ctx,
 			endpoints.HashEndpoint,
 			DecodeGRPCHashRequest,
 			EncodeGRPCHashResponse,
 		),
 		validate: grpctransport.NewServer(
-			ctx, 
 			endpoints.ValidateEndpoint,
 			DecodeGRPCValidateRequest,
 			EncodeGRPCValidateResponse,
-		)
+		),
 	}
 }
 
@@ -47,42 +45,42 @@ func (s *grpcServer) Validate(ctx context.Context, r *pb.ValidateRequest) (*pb.V
 
 	return resp.(*pb.ValidateResponse), nil
 }
-
+// EncodeGRPCHashRequest from json
 func EncodeGRPCHashRequest(ctx context.Context, r interface{}) (interface{}, error) {
 	req := r.(hashRequest)
 	return &pb.HashRequest{Password: req.Password}, nil
 }
-
+// DecodeGRPCHashRequest to json
 func DecodeGRPCHashRequest(ctx context.Context, r interface{}) (interface{}, error) {
 	req := r.(*pb.HashRequest)
 	return hashRequest{Password: req.Password}, nil
 }
-
+// EncodeGRPCHashResponse from json
 func EncodeGRPCHashResponse(ctx context.Context, r interface{}) (interface{}, error) {
 	res := r.(hashResponse)
 	return &pb.HashResponse{Hash: res.Hash, Err: res.Err}, nil
 }
-
+// DecodeGRPCHashResponse to json
 func DecodeGRPCHashResponse(ctx context.Context, r interface{}) (interface{}, error) {
 	res := r.(*pb.HashResponse)
 	return hashResponse{Hash: res.Hash, Err: res.Err}, nil
 }
-
+// EncodeGRPCValidateRequest to json
 func EncodeGRPCValidateRequest(ctx context.Context, r interface{}) (interface{}, error) {
 	req := r.(validateRequest)
 	return &pb.ValidateRequest{Password: req.Password, Hash: req.Hash}, nil
 }
-
+// DecodeGRPCValidateRequest from json
 func DecodeGRPCValidateRequest(ctx context.Context, r interface{}) (interface{}, error) {
 	req := r.(*pb.ValidateRequest)
 	return validateRequest{Password: req.Password, Hash: req.Hash}, nil
 }
-
+// EncodeGRPCValidateResponse from json
 func EncodeGRPCValidateResponse(ctx context.Context, r interface{}) (interface{}, error) {
 	res := r.(validateResponse)
 	return &pb.ValidateResponse{Valid: res.Valid}, nil
 }
-
+// DecodeGRPCValidateResponse to json
 func DecodeGRPCValidateResponse(ctx context.Context, r interface{}) (interface{}, error) {
 	res := r.(*pb.ValidateResponse)
 	return validateResponse{Valid: res.Valid}, nil
