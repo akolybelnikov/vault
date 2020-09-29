@@ -38,11 +38,11 @@ func main() {
 
 	hashEndpoint := vault.MakeHashEndpoint(srv)
 	{
-		hashEndpoint = ratelimitkit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 5))(hashEndpoint)
+		hashEndpoint = ratelimitkit.NewDelayingLimiter(rate.NewLimiter(rate.Every(time.Second), 5))(hashEndpoint)
 	}
 	validateEndpoint := vault.MakeValidateEndpoint(srv)
 	{
-		validateEndpoint = ratelimitkit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 5))(validateEndpoint)
+		validateEndpoint = ratelimitkit.NewDelayingLimiter(rate.NewLimiter(rate.Every(time.Second), 5))(validateEndpoint)
 	}
 	endpoints := vault.Endpoints{
 		HashEndpoint:     hashEndpoint,
